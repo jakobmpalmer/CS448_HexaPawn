@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/MoveList.java</file>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/Learner.java</file>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/Opponent.java</file>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/MainFrame.java</file>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/Gameboard.java</file>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/Move.java</file>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/Pawn.java</file>
-            <file>file:/Users/jakepalmer/NetBeansProjects/MachineLearning448/Lab1_HexaPawn/src/MyPanel.java</file>
+            <file>file:/Users/jakepalmer/Documents/Repositories/CS448_HexaPawn/CS448_HexaPawn/Lab1_HexaPawn/src/Move.java</file>
+            <file>file:/Users/jakepalmer/Documents/Repositories/CS448_HexaPawn/CS448_HexaPawn/Lab1_HexaPawn/src/Gameboard.java</file>
+            <file>file:/Users/jakepalmer/Documents/Repositories/CS448_HexaPawn/CS448_HexaPawn/Lab1_HexaPawn/src/MainFrame.java</file>
+            <file>file:/Users/jakepalmer/Documents/Repositories/CS448_HexaPawn/CS448_HexaPawn/Lab1_HexaPawn/src/Learner.java</file>
+            <file>file:/Users/jakepalmer/Documents/Repositories/CS448_HexaPawn/CS448_HexaPawn/Lab1_HexaPawn/src/Pawn.java</file>
+            <file>file:/Users/jakepalmer/Documents/Repositories/CS448_HexaPawn/CS448_HexaPawn/Lab1_HexaPawn/src/Opponent.java</file>
         </group>
     </open-files>
 </project-private>
