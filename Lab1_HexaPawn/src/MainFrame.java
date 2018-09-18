@@ -49,6 +49,7 @@ public class MainFrame extends javax.swing.JFrame {
         consoleTextArea = new javax.swing.JTextArea();
         consoleBoardBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        GamesWonLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +114,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        GamesWonLabel.setText("GamesWon/BoardsSaved: 0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,8 +135,10 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jButton1))
                         .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(GamesWonLabel))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -153,7 +158,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(consoleBoardBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton1)
-                            .addGap(99, 99, 99)
+                            .addGap(36, 36, 36)
+                            .addComponent(GamesWonLabel)
+                            .addGap(47, 47, 47)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -166,6 +173,7 @@ public class MainFrame extends javax.swing.JFrame {
         dimensions = 3;        
         gameBoard = new Gameboard(dimensions);        
 
+        consoleTextArea.setText("");
         repaint();
     }//GEN-LAST:event_hexaPawnBtnActionPerformed
 
@@ -207,7 +215,8 @@ public class MainFrame extends javax.swing.JFrame {
         gameBoard.setMouse(evt.getX(), evt.getY());
 
         if (gameBoard.handleRealesed(evt.getX(), evt.getY())) {
-            if ((gameBoard.getCurrentTurn() == -1) && (!gameBoard.isGameOver())) {
+            
+            if ((gameBoard.getCurrentTurn() == -1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
                 repaint();
                 try {
                     gameBoard.makeMove(compPlayer.selectRandomMoveAndLearn(gameBoard));
@@ -216,10 +225,12 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 repaint();
             } else {
-                if (gameBoard.isGameOver()) {     
+                
+                if (gameBoard.isGameOver()) {  //No more Moves 
                     
                     if (gameBoard.getCurrentTurn() == -1) {
-                        consoleTextArea.append("GameOver! You won! \n" );
+                        consoleTextArea.append("Game Over! You won!" );
+                        GamesWonLabel.setText("GamesWon/BoardsSaved: " + (compPlayer.theLearner.loseList.size() +1 ));
                         compPlayer.recordLoss();
                     } 
                 }
@@ -283,6 +294,7 @@ public class MainFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel GamesWonLabel;
     private javax.swing.JPanel boardPanel;
     private javax.swing.JButton consoleBoardBtn;
     private javax.swing.JTextArea consoleTextArea;

@@ -14,7 +14,7 @@ import java.awt.Graphics;
  */
 public class Gameboard implements java.lang.Cloneable{
 
-    private boolean DEBUG = true;
+    private boolean DEBUG = false;
     private int[][] theBoard;
     private int currentTurn = 1;
     private int boardDimensions;
@@ -75,8 +75,6 @@ public class Gameboard implements java.lang.Cloneable{
         }
         return charBoardArray;
     }
-
-
     
 
     public boolean makeMove(Move m) {
@@ -94,6 +92,7 @@ public class Gameboard implements java.lang.Cloneable{
                 theBoard[fromX][fromY] = 0;
                 if (checkWin(currentTurn)) {
                     System.out.println("Game Over! Winner is " + winnerInt);
+                    
                 }
 
                 currentTurn = -currentTurn;
@@ -106,48 +105,7 @@ public class Gameboard implements java.lang.Cloneable{
         return false;
     }
 
-//    public MoveList getLegalMoves() {
-//
-//        MoveList moveList = new MoveList();
-//
-//        for (int i = 0; i < getBoardDimensions(); i++) { //CHECK EACH PIECE
-//            for (int j = 0; j < getBoardDimensions(); j++) {
-//                //I J SCOPE-----------------------------------------------------
-//
-//                if (theBoard[i][j] == -1) {          //IF Opponent Piece
-//                    System.out.println("That i = " + i);
-//                    System.out.println("j = " + j);
-//
-//                    if (i + 1 <= theBoard.length && (theBoard[i + 1][j] == 0)) { //If forward is open
-//                        System.out.println("This i = " + i);
-//                        System.out.println("j = " + j);
-//                        moveList.add(new Move(i, j, i + 1, j));
-//
-//                        if (DEBUG) {
-//                            System.out.println("Take i = " + i);
-//                            System.out.println("Take j = " + j);
-//                            System.out.println("Board Length: " + theBoard.length);
-//                        }
-//
-//                        if ((j + 1 < theBoard.length) && (theBoard[i + 1][j + 1] == 1)) { //IF take is open
-//
-//                            moveList.add(new Move(i, j, i + 1, j + 1));//Take right
-//
-//                        } else if (j - 1 > -1 && theBoard[i + 1][j - 1] == 1) {
-//                            moveList.add(new Move(i, j, i + 1, j - 1)); //takeLeft
-//                        } else {
-//                            System.out.println("No Legal Moves");
-//                        }
-//
-//                    }
-//
-//                }
-//
-//            }//-----------------------------------------------------------------
-//        }
-//
-//        return moveList;
-//    }
+
     public boolean isLegalMove(Move m, int currentPlayer) {
 
         int fromX = m.getFromColumn();

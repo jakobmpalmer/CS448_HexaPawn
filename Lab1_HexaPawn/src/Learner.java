@@ -26,8 +26,7 @@ public class Learner {
     
     
     public MoveList Trim(MoveList moveList, Gameboard theBoard){
-        
-        
+                
         MoveList mList = new MoveList();
         ArrayList<Integer> theBoards = new ArrayList<>();
         
