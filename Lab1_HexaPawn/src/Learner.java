@@ -79,4 +79,12 @@ public class Learner {
         lastBoard = theBoard.clone();
         lastMove = m.clone();
     }
+    
+    public BoardList getBList(){
+        return bList;
+    }
+    
+    public void setBList(BoardList boardList){
+        bList = boardList;
+    }
 }

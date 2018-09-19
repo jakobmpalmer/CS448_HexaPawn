@@ -19,6 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
     int dimensions;
     
     Opponent compPlayer;
+    Opponent compPlayerTwo;
 
     /**
      * Creates new form MainFrame
@@ -29,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
         dimensions = 3;        
         gameBoard = new Gameboard(dimensions);        
         compPlayer = new Opponent();
+        compPlayerTwo = new Opponent();
 
     }
 
@@ -50,6 +52,10 @@ public class MainFrame extends javax.swing.JFrame {
         consoleBoardBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         GamesWonLabel = new javax.swing.JLabel();
+        saveBotBtn = new javax.swing.JButton();
+        loadBotBtn = new javax.swing.JButton();
+        trainBtn = new javax.swing.JButton();
+        TrainedLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +122,29 @@ public class MainFrame extends javax.swing.JFrame {
 
         GamesWonLabel.setText("GamesWon/BoardsSaved: 0");
 
+        saveBotBtn.setText("Save Bot");
+        saveBotBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBotBtnActionPerformed(evt);
+            }
+        });
+
+        loadBotBtn.setText("Load Bot");
+        loadBotBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadBotBtnActionPerformed(evt);
+            }
+        });
+
+        trainBtn.setText("Train");
+        trainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trainBtnActionPerformed(evt);
+            }
+        });
+
+        TrainedLabel.setText("Trained: 0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,21 +154,32 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(boardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pentaPawnBtn)
-                            .addComponent(hexaPawnBtn)
-                            .addComponent(consoleBoardBtn)
-                            .addComponent(jButton1))
-                        .addGap(56, 56, 56))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GamesWonLabel))
-                        .addContainerGap())))
+                        .addComponent(trainBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TrainedLabel)
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addComponent(GamesWonLabel))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(saveBotBtn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(loadBotBtn)))
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(pentaPawnBtn)
+                                .addComponent(hexaPawnBtn)
+                                .addComponent(consoleBoardBtn)
+                                .addComponent(jButton1))
+                            .addGap(44, 44, 44)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,13 +194,21 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(hexaPawnBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(pentaPawnBtn)
-                            .addGap(54, 54, 54)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(consoleBoardBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton1)
-                            .addGap(36, 36, 36)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(trainBtn)
+                                .addComponent(TrainedLabel))
+                            .addGap(25, 25, 25)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(saveBotBtn)
+                                .addComponent(loadBotBtn))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(GamesWonLabel)
-                            .addGap(47, 47, 47)
+                            .addGap(18, 18, 18)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -249,9 +297,74 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_boardPanelMouseDragged
 
+    private void saveBotBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBotBtnActionPerformed
+        // TODO add your handling code here:
+        //BoardList compPlayer.theLearner.getBList();
+    }//GEN-LAST:event_saveBotBtnActionPerformed
+
+    private void loadBotBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBotBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loadBotBtnActionPerformed
+
+    private void trainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainBtnActionPerformed
+        
+        for (int i = 0; i < 20; i++) {
+            
+        
+
+        // TODO add your handling code here:
+        if ((gameBoard.getCurrentTurn() == -1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
+                repaint();
+                try {
+                    gameBoard.makeMove(compPlayer.selectRandomMoveAndLearn(gameBoard));
+                } catch (CloneNotSupportedException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                repaint();
+            } else {
+                
+                if (gameBoard.isGameOver()) {  //No more Moves 
+                    
+                    if (gameBoard.getCurrentTurn() == -1) {                        
+                        TrainedLabel.setText("Trained: " + (compPlayer.theLearner.loseList.size() +1 ));
+                        compPlayer.recordLoss();
+                    } 
+                }
+            }
+        
+        if ((gameBoard.getCurrentTurn() == 1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
+                repaint();
+                try {
+                    gameBoard.makeMove(compPlayerTwo.selectRandomMoveAndLearn(gameBoard));
+                } catch (CloneNotSupportedException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                repaint();
+            } else {
+                
+                if (gameBoard.isGameOver()) {  //No more Moves 
+                    
+                    if (gameBoard.getCurrentTurn() == 1) {                        
+                        compPlayerTwo.recordLoss();
+                    } 
+                }
+            }
+        
+        }
+        
+        gameBoard = new Gameboard(dimensions);                       
+        repaint();        
+    }//GEN-LAST:event_trainBtnActionPerformed
+
+    
+    
     /**
      * @param args the command line arguments
      */
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -295,6 +408,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel GamesWonLabel;
+    private javax.swing.JLabel TrainedLabel;
     private javax.swing.JPanel boardPanel;
     private javax.swing.JButton consoleBoardBtn;
     private javax.swing.JTextArea consoleTextArea;
@@ -302,7 +416,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton hexaPawnBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton loadBotBtn;
     private javax.swing.JButton pentaPawnBtn;
+    private javax.swing.JButton saveBotBtn;
+    private javax.swing.JButton trainBtn;
     // End of variables declaration//GEN-END:variables
 
 }
