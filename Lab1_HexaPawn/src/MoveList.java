@@ -17,9 +17,10 @@ public class MoveList extends ArrayList<Move> {
     public String toString() {
         String str = "";
         System.out.println("ArrayList<MOVE> = Size: " + size());
+        str+= "MOVES";
             for (int i = 0; i < size(); i++) {                
-                str += "\n---------------------\nMove" + i + "\n---------------------\nFrom Column: " + get(i).getFromColumn() + "From Row: " + get(i).getFromRow() +
-                        "\n To Column: " + get(i).getToColumn() + " To Row: " + get(i).getToRow() + "\n";
+                str += "\n---------------------\nFrom Column: " + get(i).getFromColumn() + " From Row: " + get(i).getFromRow() +
+                        "\nTo Column: " + get(i).getToColumn() + " To Row: " + get(i).getToRow();
                         
                 
             }

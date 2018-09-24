@@ -12,7 +12,7 @@ import java.awt.Graphics;
  *
  * @author jakepalmer
  */
-public class Gameboard implements java.lang.Cloneable{
+public class Gameboard implements java.lang.Cloneable {
 
     private boolean DEBUG = false;
     private int[][] theBoard;
@@ -45,12 +45,12 @@ public class Gameboard implements java.lang.Cloneable{
         boardDimensions = dimensions;
 
         for (int x = 0; x < boardDimensions; x++) {
-            System.out.println("x = " + x);
+            //System.out.println("x = " + x);
             theBoard[x][0] = O;
             theBoard[x][boardDimensions - 1] = X;
 
         }
-    }
+    }        
 //-------------------------------------------------
 
     public char[][] boardToChar() {
@@ -75,7 +75,6 @@ public class Gameboard implements java.lang.Cloneable{
         }
         return charBoardArray;
     }
-    
 
     public boolean makeMove(Move m) {
         MoveList theList = listLegalMoves(this, currentTurn);
@@ -92,7 +91,7 @@ public class Gameboard implements java.lang.Cloneable{
                 theBoard[fromX][fromY] = 0;
                 if (checkWin(currentTurn)) {
                     System.out.println("Game Over! Winner is " + winnerInt);
-                    
+
                 }
 
                 currentTurn = -currentTurn;
@@ -104,7 +103,6 @@ public class Gameboard implements java.lang.Cloneable{
 
         return false;
     }
-
 
     public boolean isLegalMove(Move m, int currentPlayer) {
 
@@ -146,29 +144,32 @@ public class Gameboard implements java.lang.Cloneable{
                         if (isLegalMove(forwardMove, currentPlayer)) {
                             moveList.add(forwardMove);
                         }
-                        
-                        
-                        if ((x < boardDimensions -1) && isLegalMove(forwardMoveTakeR, currentPlayer)) {
-                            
+
+                        if ((x < boardDimensions - 1) && isLegalMove(forwardMoveTakeR, currentPlayer)) {
+
                             moveList.add(forwardMoveTakeR);
-                        
+
                         }
                         if ((x > 0) && isLegalMove(forwardMoveTakeL, currentPlayer)) {
-                            
+
                             moveList.add(forwardMoveTakeL);
-                        
+
                         }
-                        
 
                     }
-                                        
+
                 }
             }
         }
-        //System.out.println("LEGAL MOVES");
-        for (Move move : moveList) {
-            System.out.println("  Move: " + move.getFromColumn() + ", " + move.getFromRow() + " | " + move.getToColumn() + ", " + move.getToRow());
+
+        if (DEBUG) {
+
+            //System.out.println("LEGAL MOVES");
+            for (Move move : moveList) {
+                System.out.println("  Move: " + move.getFromColumn() + ", " + move.getFromRow() + " | " + move.getToColumn() + ", " + move.getToRow());
+            }
         }
+        
         return moveList;
     }
 
@@ -218,14 +219,14 @@ public class Gameboard implements java.lang.Cloneable{
     }
 
     private boolean checkWin(int currentTurn) {
-       // System.out.println("CHECK WIN");
+        // System.out.println("CHECK WIN");
         for (int x = 0; x < boardDimensions; x++) {
 
             int y = currentTurn == X ? 0 : boardDimensions - 1;
-         //   System.out.println("y = " + y);
-         //   System.out.println("Board X: " + theBoard[x][y]);
+            //   System.out.println("y = " + y);
+            //   System.out.println("Board X: " + theBoard[x][y]);
             if (theBoard[x][y] == currentTurn) {
-         //       System.out.println("Current turn = " + currentTurn);
+                //       System.out.println("Current turn = " + currentTurn);
                 winnerInt = currentTurn;
                 gameOver = true;
                 return true;
@@ -241,22 +242,19 @@ public class Gameboard implements java.lang.Cloneable{
 
         return false;
     }
-    
-    
+
     @Override
-    public Gameboard clone() throws CloneNotSupportedException{
+    public Gameboard clone() throws CloneNotSupportedException {
         Gameboard someBoard = (Gameboard) super.clone();
         int[][] intArray = new int[boardDimensions][boardDimensions];
-            for (int i = 0; i < boardDimensions; i++) {
+        for (int i = 0; i < boardDimensions; i++) {
             System.arraycopy(theBoard[i], 0, intArray[i], 0, boardDimensions);
         }
-            someBoard.setTheBoard(intArray);
-            return someBoard;
+        someBoard.setTheBoard(intArray);
+        return someBoard;
     }
-     
-    
-    
-    public boolean equalsBoard(Gameboard aBoard){
+
+    public boolean equalsBoard(Gameboard aBoard) {
         for (int i = 0; i < boardDimensions; i++) {
             for (int j = 0; j < boardDimensions; j++) {
                 if (this.theBoard[j][i] != aBoard.getGameBoard()[j][i]) {
@@ -266,35 +264,29 @@ public class Gameboard implements java.lang.Cloneable{
         }
         return true;
     }
-    
 
     //PAINT STUFFF
     public void drawBoard(Graphics myGraphics) {
 
         int size = myGraphics.getClipBounds().width;
-        
+
         int increment = size / getBoardDimensions();
-        
 
         int xIncrement = increment;
         int yIncrement = increment;
-        
+
         if (DEBUG) {
             System.out.println("DrawSize: " + size);
-            System.out.println("boardDimensions = " + getBoardDimensions());    
+            System.out.println("boardDimensions = " + getBoardDimensions());
             System.out.println("yIncrement = " + yIncrement);
             System.out.println("xIncrement = " + xIncrement);
         }
 
-        
-        
         for (int i = 0; i < boardDimensions; i++) {            
-            System.out.println("i = " + i);
             myGraphics.fillRect(xIncrement, 0, 5, 600);
             xIncrement += xIncrement;
         }
-        for (int i = 0; i < boardDimensions; i++) {
-            System.out.println("i = " + i);
+        for (int i = 0; i < boardDimensions; i++) {            
             myGraphics.fillRect(0, yIncrement, 600, 5);
             yIncrement += yIncrement;
         }
@@ -305,7 +297,6 @@ public class Gameboard implements java.lang.Cloneable{
         for (int x = 0; x < boardDimensions; x++) {
             for (int y = 0; y < boardDimensions; y++) {
 
-                
                 if ((theBoard[x][y] != 0) && !((selected) && (x == pressX) && (y == pressY))) {
                     drawPiece(myGraphics, x, y);
                 }

@@ -78,6 +78,10 @@ public class Opponent {
         }
     }
     
+    public Learner getLearner(){
+        return theLearner;
+    }
+    
     
     
 

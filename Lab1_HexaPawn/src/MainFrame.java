@@ -1,5 +1,5 @@
 
-
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,9 +15,9 @@ import java.util.logging.Logger;
 public class MainFrame extends javax.swing.JFrame {
 
     //Game
-    static Gameboard gameBoard = new Gameboard(3);    
+    static Gameboard gameBoard = new Gameboard(3);
     int dimensions;
-    
+
     Opponent compPlayer;
     Opponent compPlayerTwo;
 
@@ -27,8 +27,8 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
 
-        dimensions = 3;        
-        gameBoard = new Gameboard(dimensions);        
+        dimensions = 3;
+        gameBoard = new Gameboard(dimensions);
         compPlayer = new Opponent();
         compPlayerTwo = new Opponent();
 
@@ -54,8 +54,8 @@ public class MainFrame extends javax.swing.JFrame {
         GamesWonLabel = new javax.swing.JLabel();
         saveBotBtn = new javax.swing.JButton();
         loadBotBtn = new javax.swing.JButton();
-        trainBtn = new javax.swing.JButton();
-        TrainedLabel = new javax.swing.JLabel();
+        printBListBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,14 +136,19 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        trainBtn.setText("Train");
-        trainBtn.addActionListener(new java.awt.event.ActionListener() {
+        printBListBtn.setText("Bot B");
+        printBListBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trainBtnActionPerformed(evt);
+                printBListBtnActionPerformed(evt);
             }
         });
 
-        TrainedLabel.setText("Trained: 0");
+        jButton2.setText("Bot M");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,29 +162,29 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(trainBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TrainedLabel)
-                        .addGap(33, 33, 33))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(2, 2, 2)
-                                    .addComponent(GamesWonLabel))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(saveBotBtn)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(loadBotBtn)))
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(pentaPawnBtn)
-                                .addComponent(hexaPawnBtn)
-                                .addComponent(consoleBoardBtn)
-                                .addComponent(jButton1))
-                            .addGap(44, 44, 44)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pentaPawnBtn)
+                            .addComponent(hexaPawnBtn)
+                            .addComponent(consoleBoardBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton1)))
+                        .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(GamesWonLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(printBListBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(saveBotBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(loadBotBtn)
+                                    .addComponent(jButton2))))
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,11 +203,11 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(consoleBoardBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGap(31, 31, 31)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(trainBtn)
-                                .addComponent(TrainedLabel))
-                            .addGap(25, 25, 25)
+                                .addComponent(jButton2)
+                                .addComponent(printBListBtn))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(saveBotBtn)
                                 .addComponent(loadBotBtn))
@@ -218,8 +223,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void hexaPawnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hexaPawnBtnActionPerformed
         // TODO add your handling code here:
-        dimensions = 3;        
-        gameBoard = new Gameboard(dimensions);        
+        dimensions = 3;
+        gameBoard = new Gameboard(dimensions);
 
         consoleTextArea.setText("");
         repaint();
@@ -230,7 +235,7 @@ public class MainFrame extends javax.swing.JFrame {
         dimensions = 4;
         System.out.println("dimensions = " + dimensions);
         gameBoard = new Gameboard(dimensions);
-          
+
         repaint();
     }//GEN-LAST:event_pentaPawnBtnActionPerformed
 
@@ -263,7 +268,7 @@ public class MainFrame extends javax.swing.JFrame {
         gameBoard.setMouse(evt.getX(), evt.getY());
 
         if (gameBoard.handleRealesed(evt.getX(), evt.getY())) {
-            
+
             if ((gameBoard.getCurrentTurn() == -1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
                 repaint();
                 try {
@@ -273,14 +278,14 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 repaint();
             } else {
-                
+
                 if (gameBoard.isGameOver()) {  //No more Moves 
-                    
+
                     if (gameBoard.getCurrentTurn() == -1) {
-                        consoleTextArea.append("Game Over! You won!" );
-                        GamesWonLabel.setText("GamesWon/BoardsSaved: " + (compPlayer.theLearner.loseList.size() +1 ));
+                        consoleTextArea.append("Game Over! You won!\n");
+                        GamesWonLabel.setText("GamesWon/BoardsSaved: " + (compPlayer.getLearner().loseList.size() + 1));
                         compPlayer.recordLoss();
-                    } 
+                    }
                 }
             }
 
@@ -294,77 +299,140 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         gameBoard.setMouse(evt.getX(), evt.getY());
         repaint();
-        
+
     }//GEN-LAST:event_boardPanelMouseDragged
 
     private void saveBotBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBotBtnActionPerformed
         // TODO add your handling code here:
-        //BoardList compPlayer.theLearner.getBList();
+        MyWriter myWriter = new MyWriter();
+        BoardList theBList = compPlayer.getLearner().getBList();
+
+        for (int i = 0; i < theBList.size(); i++) {
+            System.out.println(theBList.get(i).toString());
+            myWriter.print(theBList.get(i).toString());
+            myWriter.print("---------------------\n");
+        }
+
+        //myWriter.print("************************");
+        myWriter.print(compPlayer.getLearner().getLoseList().toString());
+        myWriter.close();
     }//GEN-LAST:event_saveBotBtnActionPerformed
 
     private void loadBotBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBotBtnActionPerformed
         // TODO add your handling code here:
+        MyReader myReader = new MyReader();
+        BoardList aBoardList = new BoardList();
+        MoveList aLoseList = new MoveList();
+        String theLine;
+        Gameboard tempBoard;
+        int[][] aBoard = new int[gameBoard.getBoardDimensions()][gameBoard.getBoardDimensions()];
+        boolean MOVE = false;
+
+        //GameBoard
+        while (myReader.hasMoreData()) { // Go through Document line by line
+            theLine = myReader.giveMeTheNextLine(); //Assign document line to String
+
+            //  if (MOVE = false) {
+            if (theLine.contains("------------------------")) {
+                theLine = myReader.giveMeTheNextLine();
+            } else if ((theLine.charAt(0) == ('o')) || (theLine.charAt(0) == ('x')) || (theLine.charAt(0) == ('-'))) {
+                tempBoard = new Gameboard(gameBoard.getBoardDimensions());
+
+                for (int i = 0; i < tempBoard.getBoardDimensions(); i++) {//Iterate Y                    
+                    for (int j = 0; j < tempBoard.getBoardDimensions(); j++) { //Iterate X
+                        //System.out.println("Our Char " + theLine.charAt(j));
+                        //System.out.println("theLine " + theLine.charAt(j) + " J: " + j);
+                        switch (theLine.charAt(j)) {
+                            case 'o':
+                                aBoard[j][i] = 1;
+                                break;
+                            case 'x':
+                                aBoard[j][i] = -1;
+                                break;
+                            default:
+                                aBoard[j][i] = 0;
+                                break;
+                        }
+                    }
+                    theLine = myReader.giveMeTheNextLine();
+                }
+
+                tempBoard.setTheBoard(aBoard);
+                System.out.println("tempBoard: \n" + tempBoard.toString());
+
+                aBoardList.add(tempBoard);
+            } else if (theLine.contains("MOVES")) {
+                System.out.println("Made it too lose list!");
+                MOVE = true;
+            } else {
+                System.out.println("SOMETHING WRONG HAPPENED !!!!!");
+            }
+
+            //  }
+            if (MOVE) {
+                //LoseList
+                Move tempMove;
+                int fromRow;
+                int fromCol;
+                int toRow;
+                int toCol;
+
+                //for (int i = 0; i < compPlayer.getLearner().getLoseList().size(); i++) { //For the number of moves
+                if (myReader.hasMoreData()) { //if more text make another move
+                    
+                
+                    if (theLine.contains("Move")) {
+                        theLine = myReader.giveMeTheNextLine();
+                        theLine = myReader.giveMeTheNextLine();
+                        fromCol = theLine.charAt(13);
+                        fromRow = theLine.charAt(25);
+                        theLine = myReader.giveMeTheNextLine();
+                        toCol = theLine.charAt(11);
+                        toRow = theLine.charAt(21);
+                        tempMove = new Move(fromRow, fromCol, toRow, toCol);
+
+                        aLoseList.add(tempMove);
+                        System.out.println("hereline: " + theLine);
+                    } else if (theLine.contains("------------------------")) {
+                        theLine = myReader.giveMeTheNextLine();
+                    } else {
+                        System.out.println("something wrong happened!!");
+                    }
+                }
+            }
+        consoleTextArea.append("Bot Loaded!");
+        compPlayer.getLearner().setBList(aBoardList);
+        compPlayer.getLearner().setLoseList(aLoseList);
+        return;
+            
+        }
+
+        
+
+
     }//GEN-LAST:event_loadBotBtnActionPerformed
 
-    private void trainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainBtnActionPerformed
-        
-        for (int i = 0; i < 20; i++) {
-            
-        
-
-        // TODO add your handling code here:
-        if ((gameBoard.getCurrentTurn() == -1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
-                repaint();
-                try {
-                    gameBoard.makeMove(compPlayer.selectRandomMoveAndLearn(gameBoard));
-                } catch (CloneNotSupportedException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                repaint();
-            } else {
-                
-                if (gameBoard.isGameOver()) {  //No more Moves 
-                    
-                    if (gameBoard.getCurrentTurn() == -1) {                        
-                        TrainedLabel.setText("Trained: " + (compPlayer.theLearner.loseList.size() +1 ));
-                        compPlayer.recordLoss();
-                    } 
-                }
-            }
-        
-        if ((gameBoard.getCurrentTurn() == 1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
-                repaint();
-                try {
-                    gameBoard.makeMove(compPlayerTwo.selectRandomMoveAndLearn(gameBoard));
-                } catch (CloneNotSupportedException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                repaint();
-            } else {
-                
-                if (gameBoard.isGameOver()) {  //No more Moves 
-                    
-                    if (gameBoard.getCurrentTurn() == 1) {                        
-                        compPlayerTwo.recordLoss();
-                    } 
-                }
-            }
-        
+    private void printBListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBListBtnActionPerformed
+        BoardList theBList = compPlayer.getLearner().getBList();
+        for (int i = 0; i < theBList.size(); i++) {
+            System.out.println("TheBList:_______\n" + theBList.get(i));
+            consoleTextArea.append(theBList.get(i).toString());
         }
-        
-        gameBoard = new Gameboard(dimensions);                       
-        repaint();        
-    }//GEN-LAST:event_trainBtnActionPerformed
+    }//GEN-LAST:event_printBListBtnActionPerformed
 
-    
-    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        for (int i = 0; i < compPlayer.getLearner().getLoseList().size(); i++) {                    
+            consoleTextArea.append("-------------------\nMove: " + i + ("\n-------------------\n") );
+            consoleTextArea.append(compPlayer.getLearner().getLoseList().get(i).toString());
+            consoleTextArea.append("-------------------\n");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
-    
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -398,28 +466,72 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
 
-    
-    
-    
-    
-    
-
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel GamesWonLabel;
-    private javax.swing.JLabel TrainedLabel;
     private javax.swing.JPanel boardPanel;
     private javax.swing.JButton consoleBoardBtn;
     private javax.swing.JTextArea consoleTextArea;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton hexaPawnBtn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton loadBotBtn;
     private javax.swing.JButton pentaPawnBtn;
+    private javax.swing.JButton printBListBtn;
     private javax.swing.JButton saveBotBtn;
-    private javax.swing.JButton trainBtn;
     // End of variables declaration//GEN-END:variables
 
 }
+
+//TRAIN BUTTON *DEPRICIATED*
+//
+//System.out.println("bLIst.length: " + compPlayer.theLearner.getBList().size() + " lostList.length: " + compPlayer.theLearner.getLoseList().size());
+//        System.out.println("bLIst.length: " + compPlayerTwo.theLearner.getBList().size() + " lostList.length: " + compPlayerTwo.theLearner.getLoseList().size());
+//
+//        for (int i = 0; i < 150; i++) {
+//
+//            consoleTextArea.append("Its " + gameBoard.getCurrentTurn());
+//
+//            // TODO add your handling code here:
+//            if ((gameBoard.getCurrentTurn() == -1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
+//                repaint();
+//                try {
+//                    gameBoard.makeMove(compPlayer.selectRandomMoveAndLearn(gameBoard));
+//                } catch (CloneNotSupportedException ex) {
+//                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                repaint();
+//            } else {
+//
+//                if (gameBoard.isGameOver()) {  //No more Moves 
+//
+//                    if (gameBoard.getCurrentTurn() == -1) {
+//                        TrainedLabel.setText("Trained: " + (compPlayer.getLearner().loseList.size() + 1));
+//                        compPlayer.recordLoss();
+//                    }
+//                }
+//            }
+//
+//            if ((gameBoard.getCurrentTurn() == 1) && (!gameBoard.isGameOver())) { //If Computer turn && game not over
+//                repaint();
+//
+//                gameBoard.makeMove(compPlayerTwo.selectRandomMove(gameBoard));
+//
+//                repaint();
+//            } else {
+//
+//                if (gameBoard.isGameOver()) {  //No more Moves 
+//
+//                    if (gameBoard.getCurrentTurn() == 1) {
+//                        compPlayerTwo.recordLoss();
+//                    }
+//                }
+//            }
+//
+//        }
+//
+//        System.out.println("bLIst.length: " + compPlayer.theLearner.getBList().size() + " lostList.length: " + compPlayer.theLearner.getLoseList().size());
+//        System.out.println("bLIst.length: " + compPlayerTwo.theLearner.getBList().size() + " lostList.length: " + compPlayerTwo.theLearner.getLoseList().size());
+//        gameBoard = new Gameboard(dimensions);
+//        repaint();

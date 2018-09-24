@@ -1,0 +1,71 @@
+o--
+xoo
+-xx
+---------------------
+oo-
+--o
+xxx
+---------------------
+o--
+xoo
+-xx
+---------------------
+oo-
+--o
+xxx
+---------------------
+o--
+-ox
+x-x
+---------------------
+o-o
+-o-
+xxx
+---------------------
+o-o
+-o-
+xxx
+---------------------
+-oo
+o--
+xxx
+---------------------
+---
+oox
+-x-
+---------------------
+--o
+ox-
+-xx
+---------------------
+MOVES
+---------------------
+From Column: 1 From Row: 2
+To Column: 2 To Row: 1
+---------------------
+From Column: 1 From Row: 2
+To Column: 1 To Row: 1
+---------------------
+From Column: 2 From Row: 2
+To Column: 1 To Row: 1
+---------------------
+From Column: 0 From Row: 2
+To Column: 0 To Row: 1
+---------------------
+From Column: 0 From Row: 2
+To Column: 0 To Row: 1
+---------------------
+From Column: 0 From Row: 2
+To Column: 0 To Row: 1
+---------------------
+From Column: 2 From Row: 2
+To Column: 2 To Row: 1
+---------------------
+From Column: 1 From Row: 2
+To Column: 1 To Row: 1
+---------------------
+From Column: 1 From Row: 2
+To Column: 0 To Row: 1
+---------------------
+From Column: 1 From Row: 2
+To Column: 0 To Row: 1
